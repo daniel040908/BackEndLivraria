@@ -1,11 +1,12 @@
-// ============================
-//  Dependências
-// ============================
 import express from "express";
+//import mysql from "mysql2/promise";
 import bodyParser from "body-parser";
 import cors from "cors";
-import usuariosRoutes from "./routes/usuarios.routes.js";
-
+import usuarioRoutes from "./routes/usuarios.routes.js";
+import livrosRoutes from "./routes/livros.routes.js";
+import avaliacoesRoutes from "./routes/avaliacoes.routes.js";
+import favoritosRoutes from "./routes/favoritos.routes.js";
+import reservasRoutes from "./routes/reservas.routes.js";
 // ============================
 //  Configuração do servidor
 // ============================
@@ -14,24 +15,14 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-    res.send("API funcionando")
+    res.send("API funcionando");
 })
 
-app.use("/usuários", usuariosRoutes)
-    // ============================
-    //  Conexão com o MariaDB
-    // ============================
+app.use("/usuarios", usuarioRoutes);
+app.use("/livros", livrosRoutes);
+app.use("/avaliacoes", avaliacoesRoutes);
+app.use("/favoritos", favoritosRoutes);
+app.use("/reservas", reservasRoutes);
 
-
-// ============================
-//  Rotas CRUD
-// ============================
-
-
-
-
-// ============================
-//  Inicia o servidor
-// ============================
 const PORT = 3000;
 app.listen(PORT, () => console.log(`🚀 Servidor rodando na porta ${PORT}`));
